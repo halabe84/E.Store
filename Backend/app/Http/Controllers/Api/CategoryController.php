@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 class CategoryController extends Controller
 {
 
-    public function getAllCategories()
+    public function getAllCategories(): JsonResponse
     {
         $categories = Categories::all();
 

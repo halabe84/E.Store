@@ -32,6 +32,12 @@ Route::middleware('guest')->group(function () {
 
     // 3) Get Products
     Route::get('products', [ProductsController::class, 'GetProducts']);
+    //Return a list of all exist categories
+    Route::get('/categories', [CategoryController::class, 'getAllCategories']);
+    // Return a List by Cat id
+    Route::get('/products/category/{categoryId}', [ProductsController::class, 'getProductsByCategory']);
+    // Search for product using: name - desc - category fields
+    Route::get('/products/search', [ProductsController::class, 'searchProducts']);
 });
 
 // auth requests
@@ -50,7 +56,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
 
     // Create orders (POST)
-   // Route::post('orders', [ProductsController::class, 'CreateOrder']);
+   Route::post('orders', [ProductsController::class, 'CreateOrder']);
 
 // Update the quantity of a product in an order (PUT)
     Route::put('updateorder/{order_id}/product/{product_id}', [ProductsController::class, 'updateProductQuantity']);
@@ -58,14 +64,7 @@ Route::middleware('auth:sanctum')->group(function () {
 // Delete a product from an order (DELETE)
     Route::delete('deletefromorder/{order_id}/product/{product_id}', [ProductsController::class, 'deleteProduct']);
 
-//Return a list of all exist categories
-    Route::get('/categories', [CategoryController::class, 'getAllCategories']);
-    // Return a List by Cat id
-    Route::get('/products/category/{categoryId}', [ProductsController::class, 'getProductsByCategory']);
-    // Search for product using: name - desc - category fields
-    Route::get('/products/search', [ProductsController::class, 'searchProducts']);
-    //LOgout
-
+    //Logout
     Route::post('/logout', [Logout::class, 'logout'])->middleware('auth:sanctum');
 
 });

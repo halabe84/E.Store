@@ -2,20 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-// import HomePage from './pages/home';
-// import LOGIN from './pages/login';
-// import Registr from './pages/register';
-// import ProductDetails from './pages/productdetails';
-// import UserProfile from './pages/userprofile';
 import APP from './app';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   // <React.StrictMode>
-   <APP/>
-   // <UserProfile/>
-//<ProductDetails/>
-    // <Registr/>
-    //{/* <HomePage /> */}
+  <APP />
   // </React.StrictMode>
 );
 

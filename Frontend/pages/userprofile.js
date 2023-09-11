@@ -1,27 +1,25 @@
-import React ,{useState,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import AppBar from "./appbar";
 
 
-export default function UserProfile() {
-    const [userdata,setUserdata]=useState({})
-    const token = localStorage.getItem('token'); // استرجاع التوكن من Local Storage
-
-// إعداد رأس الطلب لتضمين التوكن
-const headers = {
-  'Authorization': `Bearer ${token}`,
-};
-console.log(headers)
+export default function UserProfile() 
+{
+    const [userdata, setUserdata] = useState({})
+    const token = localStorage.getItem('token'); 
+    const headers = {
+        'Authorization': `Bearer ${token}`,
+    };
     const getUserData = async () => {
-    const res = await fetch('http://my_store.test/api/user',{headers})
-    console.log("res:",res)
+        const res = await fetch('http://127.0.0.1:8000/api/user', { headers })
+        // console.log("res:",res)
         // check if api was called with no errors
         if (res.ok) {
             // convert from json to object
             const response = await res.json();
             // show success message to the user
-            console.log("response:",response.message)
-            console.log("response:",response)
-            
+            // console.log("response:",response.message)
+            // console.log("response:",response)
+
             // update prodcuts list for UI            
             setUserdata(response)
         } else {
@@ -32,25 +30,10 @@ console.log(headers)
     useEffect(() => {
         getUserData()
     }, [])
-    //TODO bring the data using API
-//     const getData=()=>{
-//         // setUserdata()
-//     }
-//    useEffect(() => {
-//     // getData()
-//     setUserdata({
-//         name:"abdo abdo ",
-//         email:"test@test.com",
-//         phone:"09xxxxxxxx",
-//         address:"syria/aleppo",
-//         birthDay:"199x/xx/xx",
-//        })
-// }, []); // Pass an empty array to run only once
-
 
     return <>
-        <AppBar/>
-        <section style={{ backgroundColor: "#eee" ,height:"86vh"}}>
+        <AppBar />
+        <section style={{ backgroundColor: "#eee", height: "86vh" }}>
             <div class="container py-2">
                 <div class="row">
                     <div class="col">

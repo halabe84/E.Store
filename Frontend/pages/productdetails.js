@@ -1,18 +1,12 @@
 import React from "react";
-import product_img from "./product.jpg"
 import AppBar from "./appbar";
 import { useLocation } from "react-router-dom";
 
-export default function ProductDetails({ props }) {
-    // TODO add function to bring single product ditals
+export default function ProductDetails({ addToCart }) {
     const data = useLocation()
     const product = data.state.el
-
-    //   console.log(data.state.el)
     return <>
-
         <AppBar />
-
         <section class="py-5">
             <div class="container">
                 <div class="row gx-5">
@@ -20,10 +14,8 @@ export default function ProductDetails({ props }) {
                         <div class="border rounded-4 mb-3 d-flex justify-content-center">
                             <a data-fslightbox="mygalley" class="rounded-4" data-type="image" href="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/detail1/big.webp">
                                 <img style={{ maxWidth: "100%", maxHeight: "100vh", margin: "auto" }} class="rounded-4 fit" width="100%" src={`http://my_store.test/images/${product.image}.jpg`} alt="" />
-                                {/* <img alt="fdf" style={{ maxWidth: "100%", maxHeight: "100vh", margin: "auto" }} class="rounded-4 fit" src={product_img} /> */}
                             </a>
                         </div>
-
                     </aside>
                     <div class="col-lg-6">
                         <div class="ps-lg-3">
@@ -43,19 +35,13 @@ export default function ProductDetails({ props }) {
                                 <span class="text-muted"><i class="fas fa-shopping-basket fa-sm mx-1"></i>154 orders</span>
                                 <span class="text-success ms-2">In stock</span>
                             </div>
-
                             <div class="mb-3">
                                 <span class="h5">${product.price}</span>
                             </div>
-
                             <p>
-
                                 {product.description}   </p>
-
                             <hr />
-
                             <div class="row mb-4">
-
                                 <div class="col-md-4 col-6 mb-3">
                                     <label class="mb-2 d-block">Quantity</label>
                                     <div class="input-group mb-3" style={{ width: "170px" }}>
@@ -70,7 +56,7 @@ export default function ProductDetails({ props }) {
                                 </div>
                             </div>
                             <a href="#!" class="btn btn-warning shadow-0"> Buy now </a>
-                            <a  onClick={() => props(product.id, product.cat_id)}  class="btn btn-primary shadow-0"> <i class="me-1 fa fa-shopping-basket"></i> Add to cart </a>
+                            <a onClick={() => addToCart(product.id, product.cat_id)} class="btn btn-primary shadow-0"> <i class="me-1 fa fa-shopping-basket"></i> Add to cart </a>
                             <a href="#!" class="mr-5 btn btn-light border border-secondary py-2 icon-hover px-3"> <i class="me-1 fa fa-heart fa-lg"></i> Save </a>
                             <a href="/home" class="ml-5 btn btn-success border border-secondary py-2 icon-hover px-3"> <i class="me-1 fa fa-heart fa-lg"></i> Home </a>
                         </div>
@@ -78,7 +64,5 @@ export default function ProductDetails({ props }) {
                 </div>
             </div>
         </section>
-
-
     </>
 }
